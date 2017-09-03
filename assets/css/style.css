@@ -1,0 +1,43 @@
+
+* {
+    font-family: sans-serif;
+}
+
+body, html {
+    background: #f1f1f1;
+    margin: 5px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+fieldset {
+    border: 1px solid grey;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    margin: 5px 0;
+}
+
+button {
+    border: 1px solid transparent;
+    height: 40px;
+    background: lightgrey;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+button:hover {
+    border: 1px solid grey;
+}
+
+#preview {
+    border: 1px solid grey;
+    margin: 10px 0;
+    padding: 10px;
+}

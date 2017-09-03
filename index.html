@@ -1,0 +1,282 @@
+<html>
+<head>
+    <title>Générateur de signature AEE</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <h1>Générateur de signature AEE</h1>
+    <fieldset>
+        <label for="personne">Personne</label><input type="text" id="personne"><br>
+        <label for="fonction">Fonction</label><input type="text" id="fonction"><br>
+        <label for="service">Ligne 3</label><input type="text" id="service"><br>
+        <label for="entreprise">Ligne 4</label><input type="text" id="entreprise"><br>
+        <label for="mobile">Mobile</label><input type="text" id="mobile"><br>
+        <label for="email">Mail</label><input type="email" id="email"><br>
+        <button id="generate">Générer</button>
+        <button id="download">Télécharger</button>
+    </fieldset>
+
+    <div id="preview">
+
+    </div>
+
+    <script type="text/javascript">
+    var html = "";
+    document.addEventListener('DOMContentLoaded', function(){
+        var personne   = document.getElementById("personne");
+        var fonction   = document.getElementById("fonction");
+        var service    = document.getElementById("service");
+        var entreprise = document.getElementById("entreprise");
+        var mobile     = document.getElementById("mobile");
+        var email      = document.getElementById("email");
+        var generate   = document.getElementById("generate");
+
+        generate.addEventListener('click', function() {
+            html = '<style> \
+            @import url(http://fonts.googleapis.com/css?family=Asap); \
+            div#bloc-signature div, \
+            div#bloc-signature p, \
+            div#bloc-signature img \
+            { \
+                margin:0;padding:0; \
+                border:none; \
+            } \
+            #bloc-signature { \
+                background-color:#EDEDED; \
+                border: 1px solid #CDCDCD; \
+                border-radius: 5px; \
+                color: #000000; \
+                font-family: Asap,"Trebuchet MS",Helvetica,sans-serif; \
+                font-size: 0.9em; \
+                font-weight: normal; \
+                min-width: 440px; \
+                min-height: 100px; \
+                padding: 10px; \
+                display:inline-block; \
+            } \
+            #bloc-signature a { \
+                text-decoration:none; \
+                color : inherit; \
+            } \
+            #bloc-signature #coordonnee, \
+            #bloc-signature #ecole, \
+            #bloc-signature #tutelle \
+            { \
+                display:inline-block; \
+                min-width:155px; \
+                vertical-align:top; \
+            } \
+            #bloc-signature #coordonnee { \
+                font-size: 90%; \
+            } \
+            #bloc-signature #personne { \
+                font-weight:bold; \
+            } \
+            #bloc-signature #fonction { \
+                color:#910917; \
+                font-style: normal; \
+                display:block; \
+            } \
+            #bloc-signature #service { \
+                color:black; \
+                font-style: normal; \
+                display:block; \
+            } \
+            #bloc-signature #entreprise { \
+                color:black; \
+                font-style: bold; \
+                display:block; \
+            } \
+            /*-- phone ---------------------------------------------------------*/ \
+            #bloc-signature #phone { \
+                font-size:90%; \
+                margin:5px 0 0 0; \
+                line-height:10pt; \
+            } \
+            #bloc-signature #phone div {margin:0;padding:0;border:none;} \
+            #bloc-signature #contact div span:first-child \
+            { \
+                color:#909090; \
+                display: inline-block; \
+                text-align: left; \
+                width: 2.5em; \
+            } \
+            /*-- mail ---------------------------------------------------------*/ \
+            #bloc-signature #mail { \
+                white-space:nowrap; \
+                margin:5px 0 0 0; \
+                font-size:90%; \
+                line-height:10pt; \
+            } \
+            #bloc-signature #mail div {margin:0;padding:0;border:none;} \
+            #bloc-signature #mail, \
+            #bloc-signature #mail a, \
+            #bloc-signature #mail a:link, #bloc-signature #mail a:visited { \
+                color: #F29400; \
+            } \
+            #bloc-signature #mail a:hover, #bloc-signature #mail a:active { \
+                text-decoration:underline; \
+            } \
+            #bloc-signature #web { \
+                display:none; \
+            } \
+            \
+            /*-----------------------------------------------------------------*/ \
+            #bloc-signature #ecole { \
+                font-size:80%; \
+                margin-left:10px; \
+            } \
+            #bloc-signature #logo img { \
+                /*height:40px;*/ \
+                width:140px; \
+                border:none; \
+            } \
+            #bloc-signature #pied img { \
+                /*height:21px;*/ \
+                width:213px; \
+                border:none; \
+                display:none; \
+            } \
+            \
+            #bloc-signature #ecole #pied {margin:-5px 0 0 0;padding:0;} \
+            #bloc-signature #logo { \
+                margin-top:10px; \
+                text-align: center; \
+                /* \
+                margin-left:auto; \
+                margin-right:auto; \
+                */ \
+            } \
+            #bloc-signature  #distribution{ \
+                margin:10px 0 0 0; \
+                line-height:10pt; \
+                text-align: center; \
+            } \
+            \
+            /*-- trente ans --*/ \
+            #bloc, #trenteans \
+            { \
+                display:inline-block; \
+            } \
+            #bloc-signature #ecole \
+            { \
+                /*min-width: 272px;*/ \
+                min-width: 152px; \
+            } \
+            #bloc-signature #ecole > div#trenteans { \
+                padding-right:10px; \
+                /* float: left; */ \
+            } \
+            /*-----------------------------------------------------------------*/ \
+            #bloc-signature div#tutelle { \
+                margin-left:10px; \
+                margin-top:14px; \
+                max-height:90px; \
+                min-width:100px; \
+            } \
+            div#tutelle div { \
+                /*margin-left:25px;*/ \
+                text-align:center; \
+                padding : 10px; \
+            } \
+            div#tutelle img {border:none;} \
+            div#tutelle img.logo_ur1 {width:80px;} \
+            </style> \
+            \
+            \
+            \
+            <div id="bloc-signature"> \
+            <div id="adresse"> \
+            <div id="coordonnee"> \
+            <div id="identite"> \
+            <div id="personne">'+ personne.value +'</div> \
+            <div id="service-fonction"> \
+            <span id="fonction">'+ fonction.value +'</span> \
+            <span id="service">'+ service.value +'</span> \
+            <span id="entreprise">'+ entreprise.value +'</span> \
+            </div> \
+            </div> \
+            <div id="contact"> \
+            \
+            <div id="phone"> \
+            <div class="mob" title="Mobile" rel=""><span>Mob. </span>'+ mobile.value +'</div> \
+            \
+            </div> \
+            \
+            \
+            <div id="mail"> \
+            <div><a href="mailto:'+ email.value +'">' + email.value + '</a></div> \
+            \
+            \
+            </div> \
+            \
+            <div id="web"><a href="http://www.enssat.fr">www.enssat.fr</a></div> \
+            </div> \
+            </div> \
+            <div id="ecole"> \
+            \
+            <div id="trenteans"> \
+            \
+            <a href="http://aee.enssat.fr"> \
+            <img height="100" width="100" class="logo_ur1" src="https://aeenssat.github.io/aee-maquettes/Assets/build/imgs/LogoAEE-300.png"></a> \
+            \
+            </div> \
+            \
+            <div id="bloc"> \
+            <div id="logo"> \
+            <a href="http://www.enssat.fr"> \
+            <img src="http://www.enssat.fr/uploads/images/sign/img/Enssat_logo.png?1" /></a> \
+            </div> \
+            \
+            <div id="distribution"> \
+            6 rue Kerampont - CS 80518 \
+            <br/>22305 Lannion Cedex - France \
+            </div> \
+            <div id="pied"> \
+            </div> \
+            </div> \
+            </div> \
+            <div id="tutelle"> \
+            \
+            <div> \
+            <a href="http://www.univ-rennes1.fr"> \
+            <img class="logo_ur1" src="http://www.enssat.fr/uploads/images/sign/img/UR1_logo.png?1"></a> \
+            </div> \
+            <div> \
+            <a href="http://www.imt.fr"> \
+            <img class="logo_imt" src="http://www.enssat.fr/uploads/images/sign/img/IMT_logo.png?1"></a> \
+            </div> \
+            </div> \
+            </div> \
+            </div>';
+
+
+            document.getElementById('preview').innerHTML=html;
+
+        });
+
+        document.getElementById('download').addEventListener('click', function(){
+            download(html, 'signature-'+personne.value+'.html', 'text/html');
+        });
+    });
+
+    function download(data, filename, type) {
+        var file = new Blob([data], {type: type});
+        if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+        else { // Others
+            var a = document.createElement("a"),
+            url = URL.createObjectURL(file);
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(function() {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            }, 0);
+        }
+    }
+    </script>
+</body>
+</html>
